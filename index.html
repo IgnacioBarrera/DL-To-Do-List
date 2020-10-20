@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>ToDoList</title>
+</head>
+<body>
+    <div id="tareaapp">
+        <h3>Crea una nueva tarea</h3>
+        <form @submit.prevent="agregandoTareas">
+            <h4>Tarea</h4>
+            <input v-model="tarea" type="text">
+            <button type="submit" >Crear</button>
+            <div class="addlist" v-if="(tareas.length > 0)">
+                <ul>
+                    <li v-for="(item, index) in tareas" :key="index" >{{index+1}}.-{{item}}</li>
+                </ul>
+            </div>
+            <h5 v-else>No hay ninguna tarea</h5>
+        </form> 
+    </div>
+    
+
+    <script>
+        var tarea1 = new Vue({
+            el: '#tareaapp',
+            data: {
+                tarea: '',
+                tareas: [],
+            },
+            methods: {
+                agregandoTareas(){
+                    this.tareas.push(this.tarea);
+                    this.tarea = '';
+                }
+            },
+        });
+    </script>
+</body>
+</html>
